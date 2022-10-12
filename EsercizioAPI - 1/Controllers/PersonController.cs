@@ -81,5 +81,11 @@ namespace EsercizioAPI___1.Controllers
             return new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized) { Content = new StringContent("ciaone bellone")};
         }
 
+        [HttpDelete("deletePerson/{id}")]
+        public void DeletePersonById(int id) 
+        {
+            People.Remove(CustomWhere(id));
+        }
+
     }
 }
