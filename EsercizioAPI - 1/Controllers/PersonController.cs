@@ -8,26 +8,43 @@ namespace EsercizioAPI___1.Controllers
     [Route("[controller]")]
     public class PersonController : ControllerBase
     {
-        private List<Person> people;
-        private Person person;
+        public List<Person> People { get; set; }
+        public List<int> Ints { get; set; }
+        public Person Person { get; set; }
+
+        public PersonController()
+        {
+            Ints = new List<int>();
+            People = new List<Person>();
+        }
+
+        [HttpGet("popInts")]
+        public void PopulateInts()
+        {            
+            Random rnd = new Random();
+            for (int i = 0; i < 20; i++)
+                Ints.Add(rnd.Next());
+        }
+
+        [HttpGet("getInts")]
+        public List<int> GetInts()
+        {
+            return Ints;
+        }
 
         [HttpGet()]
         public string Ciao()
         {
             return "Ciao";
         }
-
-        [HttpGet("initialize")]
-        public void InizializeList()
-        {
-            people = new List<Person>();
-        }
-
+        
         [HttpGet("createPerson/{id}")]
         public void CreatePersonQueryParam(int id, string name, string surname)
         {
-            person = new Person(id, name, surname);
-            Console.WriteLine($"Id: {person.Id} Name: {person.Name} Surname: {person.Surname}");
+            Person = new Person(id, name, surname);
+            Console.WriteLine($"Id: {Person.Id} Name: {Person.Name} Surname: {Person.Surname}");
         }
+
+
     }
 }
