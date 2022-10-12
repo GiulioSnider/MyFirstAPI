@@ -14,5 +14,9 @@ namespace EsercizioAPI___1.Models
             Name = name;
             Surname = surname;
         }
+        public Person()
+        {
+
+        }
     }
 }
