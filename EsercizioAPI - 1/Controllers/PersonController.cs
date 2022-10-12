@@ -11,7 +11,7 @@ namespace EsercizioAPI___1.Controllers
         public static List<Person> People { get; set; } = new List<Person>();
         public static List<int> Ints { get; set; } = new List<int>() { 1, 2, 3, 4, 5, 6, 8, 9, 6, 3, 2, 12, 34 };
         public static Person Person { get; set; } = new Person();
-             
+
         [HttpGet("popInts")]
         public void PopulateInts()
         {
@@ -29,9 +29,9 @@ namespace EsercizioAPI___1.Controllers
         [HttpGet()]
         public string Ciao()
         {
-            return "Ciao";
+            return "ciao";
         }
-        
+
         [HttpGet("createPerson/{id}")]
         public void CreatePersonQueryParam(int id, string name, string surname)
         {
@@ -67,6 +67,18 @@ namespace EsercizioAPI___1.Controllers
         public List<int> GetEven()
         {
             return Ints.Where(number => number % 2 == 0).ToList();
+        }
+
+        [HttpGet("getById")]
+        public Person CustomWhere(int id)
+        {
+            return People.Where(person => person.Id == id).Single();
+        }
+
+        [HttpGet("custom")]
+        public HttpResponseMessage CustomResponse()
+        {
+            return new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized) { Content = new StringContent("ciaone bellone")};
         }
 
     }
